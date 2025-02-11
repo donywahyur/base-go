@@ -8,6 +8,11 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
+    volume:
+      - ./postgres:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - postgres-network
 
   go:
     container_name: go-base
@@ -19,4 +24,4 @@ services:
     volumes:
       - .:/app
     env_file: ./.env
-    restart: unless-stopped
+    restart: always
