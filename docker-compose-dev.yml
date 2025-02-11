@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: postgres-base
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+
+  go:
+    container_name: go-base
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    env_file: ./.env
+    restart: unless-stopped
