@@ -48,5 +48,9 @@ func (s *userService) GetUserByID(request models.UserGetRequest) (models.User, e
 		return models.User{}, err
 	}
 
+	if user.Id == "" {
+		return models.User{}, errors.New("user not found")
+	}
+
 	return user, nil
 }
