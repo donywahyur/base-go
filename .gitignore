@@ -1,0 +1,6 @@
+.env
+/tmp/
+/postgres/
+
+docker-compose-dev.yml
+docker-compose-prod.yml
